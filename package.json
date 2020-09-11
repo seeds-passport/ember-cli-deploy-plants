@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-deploy-plants",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Ember CLI Deployment plugin to upload SEEDS Passport template to the Plants backend",
   "keywords": [
     "ember-addon",

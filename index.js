@@ -17,14 +17,16 @@ module.exports = {
         if(context.config.plants) {
           const settings = context.config.plants;
           const filePath = context.distDir + '/index.html';
+          const swFilePath = context.distDir + '/sw.js';
 
           const html = fs.readFileSync(filePath, 'utf8');
-
+          const sw = fs.readFileSync(swFilePath, 'utf8');
           const jsonData = {
             branch: 'master',
             environment: settings.environment,
             published:  true,
-            template: html
+            template: html,
+            sw_content: sw
           };
 
           const data = Buffer.from(JSON.stringify(jsonData)).toString('base64');
@@ -43,7 +45,7 @@ module.exports = {
           .catch((error) => {
             console.error(error.response.data);
           });
-          await axios.post(`${settings.endpoint}/api/admin/v1/reset/deploy`, body)
+          await axios.post(`${settings.endpoint}/api/admin/v1/reset-deploy`, body)
           .catch((error) => {
             console.error(error.response.data);
           });
